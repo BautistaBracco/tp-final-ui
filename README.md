@@ -1,8 +1,23 @@
-# React + Vite
+# Trabajo Final de Interfaces de Usuario
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
 
-Currently, two official plugins are available:
+Este proyecto es una implementación del juego "**Preguntados**". Se trata de un desafío de conocimientos generales donde los jugadores responden preguntas de diferentes categorías. El objetivo es responder correctamente a tantas preguntas como sea posible.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Descarga e Instalación
+
+Para descargar e instalar el proyecto, sigue estos pasos:
+
+1. Clona el repositorio en tu máquina local usando `git clone https://github.com/BautistaBracco/unq-ui-bautista-bracco-trabajo-final.git`.
+2. Navega hasta el directorio del proyecto con `cd unq-ui-bautista-bracco-trabajo-final`.
+3. Instala las dependencias necesarias con `npm install`.
+
+## Ejecución Local
+
+Para ejecutar el proyecto localmente:
+
+1. Asegúrate de estar en el directorio del proyecto.
+2. Inicializa el servidor local con `npm run dev`.
+3. En tu navegador, podrás acceder al proyecto desde `http://localhost:5173/`.
+
+
