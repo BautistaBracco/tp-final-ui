@@ -3,6 +3,7 @@ import api from '../../utils/api';
 import { Link, useParams } from 'react-router-dom';
 import Round from '../../components/round/Round';
 import ErrorModal from '../../components/modals/ErrorModal';
+import styles from './Game.module.css';
 
 const Game = () => {
    const params = useParams();
@@ -10,6 +11,7 @@ const Game = () => {
    const [currentRound, setCurrentRound] = useState(0);
    const [correctAnswers, setCorrectAnswers] = useState(0);
    const [error, setError] = useState('');
+   const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
       const difficulty = params.difficulty;
@@ -20,33 +22,43 @@ const Game = () => {
             })
             .catch((err) => {
                setError(err.message);
+            })
+            .finally(() => {
+               setIsLoaded(true);
             });
       }
    }, [params]);
 
-   return (
-      <div>
-         {currentRound < rounds.length ? (
-            <Round
-               round={rounds[currentRound]}
-               setCurrentRound={setCurrentRound}
-               setCorrectAnswers={setCorrectAnswers}
-               correctAnswers={correctAnswers}
-               setError={setError}
-            />
-         ) : (
-            <div>
-               <h2>Fin del juego</h2>
-               <h3>Respuestas correctas: {correctAnswers}</h3>
-               <Link to="/game" replace>
-                  <button>Volver a jugar</button>
-               </Link>
-               <Link to="/" replace>
-                  <button>Inicio</button>
-               </Link>
-            </div>
-         )}
-         {error && <ErrorModal error={error} setError={setError} />}
+   if (!isLoaded) {
+      return (
+         <div>
+            <h2>Cargando...</h2>
+         </div>
+      );
+   }
+
+   if (error) {
+      return <ErrorModal error={error} setError={setError} />;
+   }
+
+   return currentRound < rounds.length ? (
+      <Round
+         round={rounds[currentRound]}
+         setCurrentRound={setCurrentRound}
+         setCorrectAnswers={setCorrectAnswers}
+         correctAnswers={correctAnswers}
+         setError={setError}
+      />
+   ) : (
+      <div className={styles.container}>
+         <h2>Fin del juego</h2>
+         <h3>Respuestas correctas: {correctAnswers}</h3>
+         <Link to="/game" replace>
+            <button>Volver a jugar</button>
+         </Link>
+         <Link to="/" replace>
+            <button>Inicio</button>
+         </Link>
       </div>
    );
 };

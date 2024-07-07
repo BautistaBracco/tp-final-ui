@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import api from '../../utils/api';
 import { Link } from 'react-router-dom';
 import ErrorModal from '../../components/modals/ErrorModal';
+import styles from './GameChooseDifficulty.module.css';
 
 const GameChooseDifficulty = () => {
    const [difficulties, setDifficulties] = useState([]);
    const [error, setError] = useState('');
+   const [isLoaded, setIsLoaded] = useState(false);
 
    useEffect(() => {
       api.getDifficulty()
@@ -14,21 +16,36 @@ const GameChooseDifficulty = () => {
          })
          .catch((err) => {
             setError(err.message);
+         })
+         .finally(() => {
+            setIsLoaded(true);
          });
    }, []);
 
-   return (
-      <div>
-         <h2>Escoge la dificultad de la partida</h2>
+   if (!isLoaded) {
+      return (
          <div>
-            {difficulties.length === 0 && <p>Cargando...</p>}
+            <h2>Cargando...</h2>
+         </div>
+      );
+   }
+
+   if (error) {
+      return <ErrorModal error={error} setError={setError} />;
+   }
+
+   return (
+      <div className={styles.container}>
+         <h2 className={styles.title}>Escoge la dificultad de la partida</h2>
+         <div className={styles.difficultyContainer}>
             {difficulties.map((difficulty) => (
-               <Link to={`/game/${difficulty}`} key={difficulty}>
-                  <button>{difficulty}</button>
-               </Link>
+               <div className={styles.difficulty} key={difficulty}>
+                  <Link to={`/game/${difficulty}`}>
+                     <button className={styles.btn}>{difficulty}</button>
+                  </Link>
+               </div>
             ))}
          </div>
-         {error && <ErrorModal error={error} setError={setError} />}
       </div>
    );
 };
