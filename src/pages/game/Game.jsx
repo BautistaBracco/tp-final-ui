@@ -36,10 +36,6 @@ const Game = () => {
       return <Spinner />;
    }
 
-   if (error) {
-      return <ErrorModal error={error} setError={setError} />;
-   }
-
    return (
       <div className={styles.container}>
          {gameEnded ? (
@@ -49,7 +45,7 @@ const Game = () => {
                   Respuestas correctas: {correctAnswers}
                </h3>
                <div className={styles.endGameActionContainer}>
-                  <Link to="/game" replace>
+                  <Link to="/choose-difficulty" replace>
                      <Button>Volver a jugar</Button>
                   </Link>
                   <Link to="/" replace>
@@ -66,6 +62,7 @@ const Game = () => {
                setError={setError}
             />
          )}
+         {error && <ErrorModal error={error} setError={setError} />}
       </div>
    );
 };

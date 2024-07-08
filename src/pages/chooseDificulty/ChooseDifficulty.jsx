@@ -28,10 +28,6 @@ const ChooseDifficulty = () => {
       return <Spinner />;
    }
 
-   if (error) {
-      return <ErrorModal error={error} setError={setError} />;
-   }
-
    return (
       <div className={styles.container}>
          <h2 className={styles.title}>Escoge la dificultad de la partida</h2>
@@ -44,6 +40,7 @@ const ChooseDifficulty = () => {
                </div>
             ))}
          </div>
+         {error && <ErrorModal error={error} setError={setError} />}
       </div>
    );
 };

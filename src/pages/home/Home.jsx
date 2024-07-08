@@ -10,7 +10,7 @@ const Home = () => {
             <img src={img} alt="Preguntados" className={styles.img} />
             <h1 className={styles.title}>Preguntados</h1>
          </div>
-         <Link to="/game">
+         <Link to="/choose-difficulty">
             <Button>Comenzar</Button>
          </Link>
       </div>

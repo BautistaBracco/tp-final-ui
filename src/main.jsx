@@ -10,7 +10,7 @@ const router = createBrowserRouter([
       path: '/',
       element: <Home />,
    },
-   { path: '/game', element: <ChooseDifficulty /> },
+   { path: '/choose-difficulty', element: <ChooseDifficulty /> },
    {
       path: '/game/:difficulty',
       element: <Game />,
