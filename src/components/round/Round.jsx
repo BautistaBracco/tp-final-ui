@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import api from '../../utils/api';
 import Option from '../option/Option';
-import FeedbackMessage from '../feedbackMessage/FeedbackMessage';
+import styles from './Round.module.css';
+import FeedbackModal from '../feedbackModal/FeedbackModal';
 
 const Round = ({
    round,
@@ -17,7 +18,6 @@ const Round = ({
    const onSubmitAnswer = async (option) => {
       if (optionSelected) return;
       setOptionSelected(option);
-      console.log({ questionId: id, option });
       api.sendAnswer({ questionId: id, option })
          .then((res) => {
             if (res.answer) {
@@ -43,22 +43,25 @@ const Round = ({
    }, [answerStatus, setCurrentRound]);
 
    return (
-      <div>
-         <h3>Correctas: {correctAnswers}</h3>
-         <FeedbackMessage answerStatus={answerStatus} />
-         <h2>{question}</h2>
-         <ul>
+      <>
+         <div className={styles.roundHeader}>
+            <h3 className={styles.correctAnswers}>
+               Respuestas correctas: {correctAnswers}
+            </h3>
+            <h2 className={styles.question}>{question}</h2>
+         </div>
+         <ul className={styles.answerOptions}>
             {Object.entries(options).map(([optionKey, optionValue]) => (
                <Option
                   key={optionKey}
                   option={optionValue}
                   onClick={() => onSubmitAnswer(optionKey)}
                   isSelected={optionSelected === optionKey}
-                  answerStatus={answerStatus}
                />
             ))}
          </ul>
-      </div>
+         {optionSelected && <FeedbackModal answerStatus={answerStatus} />}
+      </>
    );
 };
 

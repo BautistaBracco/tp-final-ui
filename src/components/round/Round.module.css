@@ -1,0 +1,46 @@
+.roundHeader {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   gap: 40px;
+   width: 100%;
+}
+
+.correctAnswers {
+   font-size: 1.8rem;
+   font-weight: bold;
+   color: green;
+   text-align: center;
+   padding: 0 20px;
+}
+
+@media (max-width: 1024px) {
+   .correctAnswers {
+      text-align: center;
+      font-size: 1.5rem;
+   }
+}
+
+.question {
+   font-size: 2.5rem;
+   font-weight: bold;
+   text-align: center;
+   width: 95%;
+}
+
+.answerOptions {
+   list-style-type: none;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 80%;
+   gap: 40px;
+}
+
+@media (max-width: 1024px) {
+   .answerOptions {
+      width: 95%;
+   }
+}

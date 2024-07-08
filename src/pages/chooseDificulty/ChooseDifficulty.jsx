@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import api from '../../utils/api';
 import { Link } from 'react-router-dom';
 import ErrorModal from '../../components/modals/ErrorModal';
-import styles from './GameChooseDifficulty.module.css';
+import styles from './ChooseDifficulty.module.css';
+import Spinner from '../../components/spinner/Spinner';
+import Button from '../../components/button/Button';
 
-const GameChooseDifficulty = () => {
+const ChooseDifficulty = () => {
    const [difficulties, setDifficulties] = useState([]);
    const [error, setError] = useState('');
    const [isLoaded, setIsLoaded] = useState(false);
@@ -23,11 +25,7 @@ const GameChooseDifficulty = () => {
    }, []);
 
    if (!isLoaded) {
-      return (
-         <div>
-            <h2>Cargando...</h2>
-         </div>
-      );
+      return <Spinner />;
    }
 
    if (error) {
@@ -41,7 +39,7 @@ const GameChooseDifficulty = () => {
             {difficulties.map((difficulty) => (
                <div className={styles.difficulty} key={difficulty}>
                   <Link to={`/game/${difficulty}`}>
-                     <button className={styles.btn}>{difficulty}</button>
+                     <Button>{difficulty}</Button>
                   </Link>
                </div>
             ))}
@@ -50,4 +48,4 @@ const GameChooseDifficulty = () => {
    );
 };
 
-export default GameChooseDifficulty;
+export default ChooseDifficulty;
