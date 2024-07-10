@@ -1,0 +1,20 @@
+
+.title{
+   font-size: 3rem;
+   font-weight: bold;
+   text-align: center;
+}
+
+.actionContainer{
+   display: flex;
+   flex-direction: column;
+   gap: 40px;
+}
+
+.correctAnswers {
+   color: #3fae00;
+   font-size: 2rem;
+   font-weight: bold;
+   text-align: center;
+   width: 95%;
+}

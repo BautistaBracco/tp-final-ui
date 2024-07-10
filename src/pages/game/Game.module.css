@@ -5,23 +5,3 @@
    align-items: center;
    min-height: 100vh;
 }
-
-.endGameTitle{
-   font-size: 3rem;
-   font-weight: bold;
-   text-align: center;
-}
-
-.endGameActionContainer{
-   display: flex;
-   flex-direction: column;
-   gap: 40px;
-}
-
-.endGameCorrectAnswers {
-   color: #229954;
-   font-size: 2rem;
-   font-weight: bold;
-   text-align: center;
-   width: 95%;
-}

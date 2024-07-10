@@ -29,3 +29,7 @@
    transition: transform 0.3s;
    text-decoration: none;
 }
+
+.btn::first-letter {
+   text-transform: uppercase;
+}

@@ -6,15 +6,21 @@ const FeedbackModal = ({ answerStatus }) => {
       switch (status) {
          case 'correct':
             return (
-               <h2 className={`${styles.correct} ${styles.feedbackMessage}`}>
-                  ¡Correcto!
-               </h2>
+               <div className={styles.modalContent}>
+                  <h2 className={`${styles.correct} ${styles.feedbackMessage}`}>
+                     ¡Correcto!
+                  </h2>
+               </div>
             );
          case 'incorrect':
             return (
-               <h2 className={`${styles.incorrect} ${styles.feedbackMessage}`}>
-                  ¡Incorrecto!
-               </h2>
+               <div className={styles.modalContent}>
+                  <h2
+                     className={`${styles.incorrect} ${styles.feedbackMessage}`}
+                  >
+                     ¡Incorrecto!
+                  </h2>
+               </div>
             );
          default:
             return <Spinner color="white" />;
@@ -22,11 +28,7 @@ const FeedbackModal = ({ answerStatus }) => {
    };
 
    return (
-      <div className={styles.modal}>
-         <div className={styles.modalContent}>
-            {renderStatusMessage(answerStatus)}
-         </div>
-      </div>
+      <div className={styles.modal}>{renderStatusMessage(answerStatus)}</div>
    );
 };
 

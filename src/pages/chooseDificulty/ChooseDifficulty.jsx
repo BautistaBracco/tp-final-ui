@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import api from '../../utils/api';
 import { Link } from 'react-router-dom';
-import ErrorModal from '../../components/modals/ErrorModal';
 import styles from './ChooseDifficulty.module.css';
 import Spinner from '../../components/spinner/Spinner';
 import Button from '../../components/button/Button';
+import ErrorModal from '../../components/errorModal/ErrorModal';
 
 const ChooseDifficulty = () => {
    const [difficulties, setDifficulties] = useState([]);
@@ -25,7 +25,11 @@ const ChooseDifficulty = () => {
    }, []);
 
    if (!isLoaded) {
-      return <Spinner />;
+      return (
+         <div className={styles.container}>
+            <Spinner />
+         </div>
+      );
    }
 
    return (

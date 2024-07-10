@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import api from '../../utils/api';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Round from '../../components/round/Round';
-import ErrorModal from '../../components/modals/ErrorModal';
 import styles from './Game.module.css';
 import Spinner from '../../components/spinner/Spinner';
-import Button from '../../components/button/Button';
+import ErrorModal from '../../components/errorModal/ErrorModal';
+import GameEnd from '../../components/gameEnd/GameEnd';
 
 const Game = () => {
    const params = useParams();
@@ -33,26 +33,17 @@ const Game = () => {
    }, [params]);
 
    if (!isLoaded) {
-      return <Spinner />;
+      return (
+         <div className={styles.container}>
+            <Spinner />
+         </div>
+      );
    }
 
    return (
       <div className={styles.container}>
          {gameEnded ? (
-            <>
-               <h2 className={styles.endGameTitle}>Fin del juego</h2>
-               <h3 className={styles.endGameCorrectAnswers}>
-                  Respuestas correctas: {correctAnswers}
-               </h3>
-               <div className={styles.endGameActionContainer}>
-                  <Link to="/choose-difficulty" replace>
-                     <Button>Volver a jugar</Button>
-                  </Link>
-                  <Link to="/" replace>
-                     <Button>Inicio</Button>
-                  </Link>
-               </div>
-            </>
+            <GameEnd correctAnswers={correctAnswers} />
          ) : (
             <Round
                round={rounds[currentRound]}
